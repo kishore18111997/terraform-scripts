@@ -10,11 +10,15 @@ resource "aws_instance" "tfinstance" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "tf-ec2"
+    Name = "tf-ec2"		
   }
 }
 
-#resource "aws_eip" "test" {
- # vpc      = true
- # instance = aws_instance.tfinstance.id
-#}
+#Name = "tf-ec2" this is the name of the instance
+
+#next resource creates a elastic IP and attaches it to the instance
+
+resource "aws_eip" "test" {
+  vpc      = true
+  instance = aws_instance.tfinstance.id
+}
